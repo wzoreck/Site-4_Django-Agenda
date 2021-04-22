@@ -16,7 +16,8 @@
         {% for contato in contatos %}
             <tr> <!-- Cirar tabela através dos dados passados pela view -->
                 <td>
-                    <a href="#">{{ contato.nome }}</a>
+                    <!-- Para linkar e direcionar para o próprio contato através da view ver_contato -->
+                    <a href="{% url 'ver_contato'  contato.id %}">{{ contato.nome }}</a>
                 </td>
                 <td>{{ contato.sobrenome }}</td>
                 <td>{{ contato.telefone }}</td>
