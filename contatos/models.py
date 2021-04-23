@@ -19,6 +19,7 @@ class Contato(models.Model):
     data_criacao = models.DateTimeField(default=timezone.now) # Default faz receber uma data padrão
     descricao = models.TextField(blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING) # Criando uma chave estrangeira para categoria, ao Contato ser deletado não faz nada com as categorias
+    mostrar = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nome
