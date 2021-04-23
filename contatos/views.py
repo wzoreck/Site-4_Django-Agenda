@@ -14,4 +14,7 @@ def index(request):
 def ver_contato(request, contato_id): # O argumento passado pela URL vai ser passado para a view
     # contato = Contato.objects.get(id=contato_id)
     contato = get_object_or_404(Contato, id=contato_id) # Forma para obter o objeto ou gerar 404
+    if not contato.mostrar:
+        raise Http404()
+        
     return render(request, 'contatos/ver_contato.html', {'contato' : contato})
