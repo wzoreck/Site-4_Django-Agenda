@@ -20,6 +20,7 @@ class Contato(models.Model):
     descricao = models.TextField(blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING) # Criando uma chave estrangeira para categoria, ao Contato ser deletado não faz nada com as categorias
     mostrar = models.BooleanField(default=True)
+    foto = models.ImageField(blank=True, upload_to='fotos/%Y/%m/%d') # Para onde quer enviar as fotos
 
     def __str__(self):
         return self.nome
