@@ -5,7 +5,7 @@ from django.core.paginator import Paginator # Para criar paginação em listas/t
 
 # Create your views here.
 def index(request):
-    contatos = Contato.objects.all()
+    contatos = Contato.objects.order_by('nome') # Para ordenar por nome a lista
     paginator = Paginator(contatos, 2)
     page = request.GET.get('p')
     contatos = paginator.get_page(page)
@@ -18,3 +18,13 @@ def ver_contato(request, contato_id): # O argumento passado pela URL vai ser pas
         raise Http404()
         
     return render(request, 'contatos/ver_contato.html', {'contato' : contato})
+
+def busca(request):
+    termo = request.GET.get('termo')
+    contatos = Contato.objects.order_by().filter(
+        nome = termo
+    )
+    paginator = Paginator(contatos, 2)
+    page = request.GET.get('p')
+    contatos = paginator.get_page(page)
+    return render(request, 'contatos/busca.html', {'contatos' : contatos})
