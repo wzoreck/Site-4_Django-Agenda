@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404 # Este é um atalho para não ter que repitir o código toda vez no try/except
+from django.shortcuts import render, redirect, get_object_or_404 # Este é um atalho para não ter que repitir o código toda vez no try/except
 from django.http import Http404
 from .models import Contato
 from django.core.paginator import Paginator # Para criar paginação em listas/tabelas com vários dados
@@ -6,9 +6,6 @@ from django.contrib import messages
 
 # Create your views here.
 def index(request):
-    # Exibir uma mensagem
-    messages.add_message(request, messages.ERROR, 'Ocorre um erro')
-
     contatos = Contato.objects.order_by('nome') # Para ordenar por nome a lista
     paginator = Paginator(contatos, 2)
     page = request.GET.get('p')
@@ -25,6 +22,11 @@ def ver_contato(request, contato_id): # O argumento passado pela URL vai ser pas
 
 def busca(request):
     termo = request.GET.get('termo')
+
+    if termo is None or not termo:
+        messages.add_message(request, messages.ERROR, 'Campo termo não pode ficar vazio')
+        return redirect('index')
+
     contatos = Contato.objects.order_by().filter(
         nome = termo
     )

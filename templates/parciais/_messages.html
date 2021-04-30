@@ -1,0 +1,10 @@
+<!-- Exibir Mensagem -->
+{% if messages %}
+    <br>
+    {% for message in messages %}
+        <!-- {{message}} {{message.tags}} -->
+        <div class="alert {{message.tags}}"> <!-- message.tags informará a classe do tipo de alerta a ser criado -->
+        {{message}} <!-- Mensagem em si -->
+        </div>
+    {% endfor %}
+{% endif %}
