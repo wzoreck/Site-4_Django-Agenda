@@ -23,6 +23,16 @@
                     id="search-input"
                     placeholder="Digite sua pesquisa"
                     name="termo">
+
+              <!-- Exibir Mensagem -->
+              {% if messages %}
+                {% for message in messages %}
+                  <!-- {{message}} {{message.tags}} -->
+                  <div class="alert {{message.tags}}"> <!-- message.tags informará a classe do tipo de alerta a ser criado -->
+                    <strong>Erro!</strong> {{message}} <!-- Mensagem em si -->
+                  </div>
+                {% endfor %}
+              {% endif %}
             </div>
           </div>
         </form>

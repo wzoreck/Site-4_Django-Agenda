@@ -125,3 +125,15 @@ STATICFILES_DIRS = [
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
+
+# -- Mensagens --
+from django.contrib.messages import constants # Importando aqui só para facilitar o exemple (o certo é la em cima)
+
+# Vamos sobreescrever as message_tags do Django, colocamos as tags do bootstrap para sustituir
+MESSAGE_TAGS = {
+    constants.ERROR: 'alert-danger',
+    constants.WARNING: 'alert-warning',
+    constants.INFO: 'alert-info',
+    constants.DEBUG: 'alert-dark',
+    constants.SUCCESS: 'alert-success',
+}
